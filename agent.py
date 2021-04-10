@@ -1,3 +1,6 @@
+from decorators import check_access
+
+
 class BaseUser:
     def __init__(self, username, password, first_name, last_name, email, **kwargs):
         super().__init__(**kwargs)
@@ -83,3 +86,7 @@ class Agent(BaseUser):
 
     def has_access(self):
         return self.__has_access
+
+    @check_access
+    def create_deal(self):
+        pass
