@@ -1,3 +1,7 @@
+from constants import PROFILE_MAPPER
+from decorators import check_access
+
+
 class BaseUser:
     def __init__(self, username, password, first_name, last_name, email, **kwargs):
         super().__init__(**kwargs)
@@ -48,7 +52,7 @@ class Supervisor(BaseUser):
         return tmp
 
     @classmethod
-    def search(cls, username):
+    def search_username(cls, username):
         for agent in cls.agents_list:
             if agent.username == username:
                 return agent
@@ -83,3 +87,13 @@ class Agent(BaseUser):
 
     def has_access(self):
         return self.__has_access
+
+    @staticmethod
+    @check_access
+    def add_profile(obj):
+        house_or_apartment = input('Please choose house or apartment?')
+        rent_or_purchase = input('Please choose rent or purchase?')
+        input_tuple = (house_or_apartment, rent_or_purchase)
+        profile_class = PROFILE_MAPPER[input_tuple]
+        return input_tuple, profile_class.prompt()
+

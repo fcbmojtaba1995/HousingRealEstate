@@ -1,12 +1,12 @@
 from agent import Agent, Supervisor
-from constants import AGENT_FILE_PATH
+from constants import AGENTS_FILE_PATH
 from store import load_data
 
 
 def check_agent_username(username):
-    agents_data = load_data(AGENT_FILE_PATH)
+    agents_data = load_data(AGENTS_FILE_PATH)
     _ = [Agent(**d) for d in agents_data]
-    agent = Supervisor.search(username)
+    agent = Supervisor.search_username(username)
     return agent
 
 
@@ -28,7 +28,8 @@ def agent_auth():
         password = input('Please enter your password:')
         password_is_correct = check_agent_password(agent, password)
         if password_is_correct:
-            print('Welcome')
+            print('Welcome Back!!!')
             password_is_correct = True
         else:
             print('Password is wrong, try again...')
+    return agent
