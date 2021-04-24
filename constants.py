@@ -9,6 +9,7 @@ SUPERVISOR_CREDENTIALS = [
 
 AGENTS_FILE_PATH = 'fixtures/agents.json'
 PROFILES_FILE_PATH = 'fixtures/profiles.json'
+DEALS_FILE_PATH = 'fixtures/deals.json'
 
 PROFILE_MAPPER = {
     ('house', 'rent'): HouseRental,
