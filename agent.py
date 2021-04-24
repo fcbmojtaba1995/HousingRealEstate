@@ -1,5 +1,6 @@
 from constants import PROFILE_MAPPER
 from decorators import check_access
+from deal import RentDeal, PurchaseDeal
 
 
 class BaseUser:
@@ -97,3 +98,11 @@ class Agent(BaseUser):
         profile_class = PROFILE_MAPPER[input_tuple]
         return input_tuple, profile_class.prompt()
 
+    @staticmethod
+    @check_access
+    def add_deal(obj):
+        rent_or_purchase = input('Please choose rent or purchase?')
+        if rent_or_purchase == 'rent':
+            return RentDeal.prompt()
+        elif rent_or_purchase == 'purchase':
+            return PurchaseDeal.prompt()
