@@ -1,7 +1,7 @@
-from constants import PROFILE_MAPPER
+from constants import PROFILE_MAPPER, PROFILES_FILE_PATH
 from decorators import check_access
 from deal import RentDeal, PurchaseDeal
-
+from store import load_data
 
 class BaseUser:
     def __init__(self, username, password, first_name, last_name, email, **kwargs):
@@ -106,3 +106,7 @@ class Agent(BaseUser):
             return RentDeal.prompt()
         elif rent_or_purchase == 'purchase':
             return PurchaseDeal.prompt()
+
+    @staticmethod
+    def search():
+        return load_data(PROFILES_FILE_PATH)

@@ -54,7 +54,9 @@ def agent():
         agent_obj = agent_auth()
         add_deal(agent_obj)
     elif agent_options_input == 's':
-        pass
+        agent_obj = agent_auth()
+        result_search = agent_obj.search()
+        print(result_search)
     elif agent_options_input == 'e':
         print('#' * 40, 'BY', '#' * 40)
 
